@@ -1,21 +1,14 @@
 name: Deploy code
 
-# Controls when the workflow will run
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       choice:
-        type: choice
-        description: Please select the server to use
-        default: 'imsb-fiproxy.estpak.ee'
-        options:
-        - imsa-fiproxy.estpak.ee
-        - imsb-fiproxy.estpak.ee
+        type: string
+        required: true
       service-restart:
         type: boolean
-        description: Restart service after deploy
-        required: false
-        default: false
+        required: true
   
 jobs:
   deploy:
@@ -24,4 +17,5 @@ jobs:
       - name: Print choice
         run: |
           echo "Selected choice is: ${{ inputs.choice }}"
+          echo "Service restart needed: ${{ inputs.service-restart }}"
           echo "Branch to use: ${{ github.ref_name }}"
