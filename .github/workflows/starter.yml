@@ -12,6 +12,7 @@ on:
 #        - imsa
 #        - imsb
       imsa:
+        description: Please select the server to use
         type: boolean
         default: false
       imsb:
