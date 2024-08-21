@@ -13,6 +13,7 @@ on:
 #        - imsb
       text:
         description: Please select the server to use
+        default: ---------
         required: false
       imsa:
         type: boolean
