@@ -1,17 +1,22 @@
 name: Start job
 
-# Controls when the workflow will run
 on:
   workflow_dispatch:
     inputs:
-      choice:
-        type: choice
-        description: Please select the server to use
-        default: 'all'
-        options:
-        - all
-        - imsa
-        - imsb
+#      choice:
+#        type: choice
+#        description: Please select the server to use
+#        default: 'all'
+#        options:
+#        - all
+#        - imsa
+#        - imsb
+      imsa:
+        type: boolean
+        default: false
+      imsb:
+        type: boolean
+        default: false
       service-restart:
         type: boolean
         description: Restart service after deploy
@@ -19,8 +24,18 @@ on:
         default: false
   
 jobs:
-  call-workflow:
-    uses: ./.github/workflows/deploy.yml
-    with:
-      choice: ${{ inputs.choice }}
-      service-restart: ${{ inputs.service-restart }}
+    call-imsa-workflow:
+      if: ${{ inputs.imsa == true }}
+      uses: ./.github/workflows/deploy.yml
+      with:
+        choice: ${{ inputs.imsa }}
+        service-restart: ${{ inputs.service-restart }}
+
+    call-imsb-workflow:
+      if: ${{ inputs.imsb == true }}
+      uses: ./.github/workflows/deploy.yml
+      with:
+        choice: ${{ inputs.imsb }}
+        service-restart: ${{ inputs.service-restart }}
+
+        
