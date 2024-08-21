@@ -19,10 +19,8 @@ on:
         default: false
   
 jobs:
-  deploy:
-    runs-on: [ubuntu-latest]
-    steps:
-      - name: Print choice
-        run: |
-          echo "Selected choice is: ${{ inputs.choice }}"
-          echo "Branch to use: ${{ github.ref_name }}"
+  call-workflow:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      choice: ${{ inputs.choice }}
+      service-restart: ${{ inputs.service-restart }}
