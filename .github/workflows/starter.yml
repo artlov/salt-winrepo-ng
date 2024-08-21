@@ -28,14 +28,14 @@ jobs:
       if: ${{ inputs.imsa == true }}
       uses: ./.github/workflows/deploy.yml
       with:
-        choice: ${{ inputs.imsa }}
+        choice: imsa
         service-restart: ${{ inputs.service-restart }}
 
     call-imsb-workflow:
       if: ${{ inputs.imsb == true }}
       uses: ./.github/workflows/deploy.yml
       with:
-        choice: ${{ inputs.imsb }}
+        choice: imsb
         service-restart: ${{ inputs.service-restart }}
 
         
